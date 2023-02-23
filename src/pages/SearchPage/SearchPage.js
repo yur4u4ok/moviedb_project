@@ -4,6 +4,7 @@ import {useEffect} from "react";
 
 import {movieActions} from "../../redux";
 import {Movie} from "../../components";
+import css from './SearchPage.module.css'
 
 const SearchPage = () => {
 
@@ -22,8 +23,10 @@ const SearchPage = () => {
 
 
     return (
-        <div>
-            {searchMovies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+        <div className={css.mainSearchDiv}>
+            <div className={css.Search}>
+                {searchMovies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+            </div>
         </div>
     )
 }

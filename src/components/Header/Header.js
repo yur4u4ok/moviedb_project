@@ -1,16 +1,18 @@
 import {Link, useNavigate} from "react-router-dom";
 
 import css from './Header.module.css'
-import {useRef} from "react";
 
 
 const Header = () => {
-    const inputValue = useRef()
     const navigate = useNavigate()
 
-    const setSearchWord = () => {
-        navigate(`/search/${inputValue.current.value}`)
-        inputValue.current.value = ''
+    const setSearchWord = (request) => {
+        if(request) {
+            navigate(`/search/${request}`)
+        }else{
+
+        navigate('/movies')
+        }
     }
 
     return (
@@ -20,8 +22,7 @@ const Header = () => {
             </Link>
 
             <div className={css.searchUserTheme}>
-                <input type="text" placeholder={'Enter your movie name'} ref={inputValue}/>
-                <button onClick={() => setSearchWord()}>Search</button>
+                <input type="text" placeholder={'Enter your movie name'} onChange={e => setSearchWord(e.target.value)}/>
 
                 <div className={css.round}>A</div>
                 <div className={css.round}></div>
