@@ -1,0 +1,14 @@
+.movie{
+    margin: 10px;
+    width: 270px;
+}
+
+.images:hover {
+    opacity: 0.7;
+    transition: opacity 0.7s;
+}
+
+.link{
+    text-decoration: none;
+    color: darkslategray;
+}

@@ -1,0 +1,50 @@
+.MovieInfo{
+
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.ImageAndInfo {
+    display: flex;
+    padding-left: 22%;
+    width: 60%;
+}
+
+h3{
+    font-family: Chiller, sans-serif;
+    font-size: 45px;
+    margin-right: 10px;
+}
+
+.image{
+    padding-right: 50px;
+    width: 350px;
+}
+
+.badge{
+    font-size: 15px;
+    padding-right: 7px;
+    padding-left: 7px;
+    background-color: cornflowerblue;
+    color: black;
+    height: 30px;
+    margin: -64px 2px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+.divForBadges{
+    display: flex;
+    position: relative;
+    bottom: 455px;
+    width: 350px;
+    height: 70px;
+    flex-wrap:wrap;
+}

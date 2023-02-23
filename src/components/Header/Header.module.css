@@ -1,0 +1,40 @@
+.Header {
+    height: 70px;
+    background-color: cornflowerblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-right: 200px;
+}
+
+h2{
+    font-size: 35px;
+    font-family: "Bauhaus 93", serif;
+}
+
+.searchUserTheme{
+    display: flex;
+}
+
+.round{
+    margin-left: 20px;
+    background-color: snow;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: "Arial", serif;
+}
+
+input{
+    height: 25px;
+    border-radius: 10px;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,10 @@
+.movies{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    width: 70%;
+}
+.mainPageForMovies{
+    display: flex;
+    justify-content: center;
+}

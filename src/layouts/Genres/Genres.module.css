@@ -1,0 +1,18 @@
+.Genres{
+    background-color: cornflowerblue;
+    height: 840px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: "Bauhaus 93", serif;
+    font-size: 17px;
+}
+
+.Genres a{
+    text-decoration: none;
+    color: blue;
+}
+
+.Genres a[class='active'] {
+    font-size: 20px;
+    color: red;
+}
