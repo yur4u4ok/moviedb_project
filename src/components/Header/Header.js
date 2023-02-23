@@ -1,4 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
+import ThemeSwitch from 'react-theme-switch-css'
 
 import css from './Header.module.css'
 
@@ -25,7 +26,7 @@ const Header = () => {
                 <input type="text" placeholder={'Enter your movie name'} onChange={e => setSearchWord(e.target.value)}/>
 
                 <div className={css.round}>A</div>
-                <div className={css.round}></div>
+                <ThemeSwitch/>
             </div>
 
         </div>
