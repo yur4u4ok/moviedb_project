@@ -16,7 +16,8 @@
     "web-vitals": "^2.1.4",
     "@mui/material": "^5.11.10",
     "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6"
+    "@emotion/styled": "^11.10.6",
+    "react-theme-switch-css": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
