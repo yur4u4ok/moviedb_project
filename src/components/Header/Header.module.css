@@ -5,6 +5,7 @@
     justify-content: space-around;
     align-items: center;
     padding-right: 200px;
+    opacity: 0.9;
 }
 
 h2{
@@ -46,13 +47,5 @@ input{
     color: black;
 }
 
-html[data-theme='dark']{
-    --background: #242424;
-    color: white;
-}
-
-html{
-    background-color: var(--background);
-}
 
 

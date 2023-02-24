@@ -1,15 +1,20 @@
 .Genres{
     background-color: cornflowerblue;
-    height: 1040px;
+    height: 970px;
     padding-left: 25px;
     padding-right: 25px;
-    font-family: "Bauhaus 93", serif;
+    font-family: "Century Gothic", serif;
     font-size: 20px;
+    border-radius: 30px;
+    border: 1px solid black;
+    opacity: 0.8;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .Genres a{
     text-decoration: none;
-    color: blue;
+    color: darkblue;
 }
 
 .Genres a[class='active'] {
@@ -19,4 +24,8 @@
 
 .toMainPage{
     color: midnightblue;
+    border: 2px solid midnightblue;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
 }

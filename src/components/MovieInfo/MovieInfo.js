@@ -43,7 +43,7 @@ const MovieInfo = () => {
         <div className={css.MovieInfo}>
 
             <div className={css.title}>
-                <h3>{title}</h3>
+                <h4 className={css.h4Title}>{title}</h4>
             </div>
 
             <div className={css.ImageAndInfo}>
@@ -63,13 +63,14 @@ const MovieInfo = () => {
                             precision={0.5} readOnly
                     /> {''} ({vote_average})
 
-                    <h4>Description</h4>{overview}
+                    <h4>Description</h4>
+                    <p>{overview}</p>
 
                     <h4>Release Date</h4>
-                    {release_date}
+                    <p>{release_date}</p>
 
                     <h4>Original Language</h4>
-                    {original_language.toUpperCase()}
+                    <p>{original_language.toUpperCase()}</p>
 
                     <h4>Genres</h4>
                     {genre_ids?.map(item => <span key={item}>{findGenre(item) + ' ; '}</span>)}

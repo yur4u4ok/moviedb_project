@@ -11,12 +11,19 @@
     display: flex;
     padding-left: 22%;
     width: 60%;
+    font-size: 18px;
+    font-weight: inherit;
 }
 
-h3{
-    font-family: Chiller, sans-serif;
-    font-size: 45px;
+.h4Title{
+    font-family: "Century Gothic", sans-serif;
+    font-size: 30px;
     margin-right: 10px;
+}
+
+h4{
+    font-family: "Century Gothic", serif;
+    font-weight: bold;
 }
 
 .image{

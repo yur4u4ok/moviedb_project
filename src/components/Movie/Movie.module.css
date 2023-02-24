@@ -10,7 +10,8 @@
 
 .link{
     text-decoration: none;
-    color: darkslategray;
+    /*color: darkcyan;*/
+    font-family: "Century Gothic", serif;
 }
 
 .divForBadge{
@@ -42,3 +43,4 @@
     opacity: 0.8;
     font-weight: bold;
 }
+

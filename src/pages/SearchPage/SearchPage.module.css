@@ -15,7 +15,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    background-color: snow;
+    width: 370px;
+    margin: 10px 10px 10px 33%;
+    border-radius: 20px;
 }
 
 .NoResults{
