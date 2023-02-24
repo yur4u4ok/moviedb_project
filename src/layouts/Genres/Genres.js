@@ -16,6 +16,7 @@ const Genres = () => {
 
     return (
         <div className={css.Genres}>
+            {<NavLink to={'/movies'}><p className={css.toMainPage}>Main Page</p></NavLink>}
             {genres.map(genre => <NavLink to={`/movies/${genre?.id}`} key={genre?.id}><p>{genre?.name}</p></NavLink>)}
         </div>
     )

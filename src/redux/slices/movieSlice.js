@@ -7,7 +7,8 @@ const initialState = {
     genres: [],
     moviesByGenre: [],
     searchMovies: [],
-    thisPage: null,
+    currentPage: 1,
+    currentSearchPage:1,
     total_pages: null,
     loading: false,
     errors: null
@@ -15,9 +16,9 @@ const initialState = {
 
 const getAllMovies = createAsyncThunk(
     'movieSlice/getAllMovies',
-    async ({page}, thunkAPI) => {
+    async ({currentPage}, thunkAPI) => {
         try{
-            const {data} = await movieService.getAllMovies(page)
+            const {data} = await movieService.getAllMovies(currentPage)
             return data
         }
         catch(e){
@@ -41,9 +42,9 @@ const getGenres = createAsyncThunk(
 
 const getMoviesByGenre = createAsyncThunk(
     'movieSlice/getMoviesByGenre',
-    async({genreId, page}, thunkAPI) => {
+    async({genreId, currentPage}, thunkAPI) => {
         try {
-            const {data} = await movieService.getMoviesByGenre(genreId, page)
+            const {data} = await movieService.getMoviesByGenre(genreId, currentPage)
             return data
         }
         catch(e){
@@ -54,9 +55,9 @@ const getMoviesByGenre = createAsyncThunk(
 
 const getMoviesBySearch = createAsyncThunk(
     'movieSlice/getMoviesBySearch',
-    async({value}, thunkAPI) => {
+    async({value, currentSearchPage}, thunkAPI) => {
         try {
-            const {data} = await movieService.getSearchMovie(value)
+            const {data} = await movieService.getSearchMovie(value, currentSearchPage)
             return data
         }
         catch(e){
@@ -68,7 +69,15 @@ const getMoviesBySearch = createAsyncThunk(
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        setCurrentPage: (state,action) => {
+            state.currentPage = action.payload
+        },
+
+        setSearchPage: (state,action) => {
+            state.currentSearchPage = action.payload
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(getAllMovies.fulfilled, (state, action) => {
@@ -76,33 +85,55 @@ const movieSlice = createSlice({
                 state.movies = results
                 state.thisPage = page
                 state.total_pages = total_pages
+                state.loading = false
             })
+            .addCase(getAllMovies.pending, (state, action) => {
+                state.loading = true
+            })
+
             .addCase(getGenres.fulfilled, (state, action) => {
                 const {genres, total_pages} = action.payload
                 state.genres = genres
                 state.total_pages = total_pages
+                state.loading = false
             })
+            .addCase(getGenres.pending, (state, action) => {
+                state.loading = true
+            })
+
             .addCase(getMoviesByGenre.fulfilled, (state, action) => {
                 const {results, page, total_pages} = action.payload
                 state.moviesByGenre = results
                 state.thisPage = page
                 state.total_pages = total_pages
+                state.loading = false
             })
+            .addCase(getMoviesByGenre.pending, (state, action) => {
+                state.loading = true
+            })
+
             .addCase(getMoviesBySearch.fulfilled, (state, action) => {
                 const {results, page, total_pages} = action.payload
                 state.searchMovies = results
                 state.thisPage = page
                 state.total_pages = total_pages
+                state.loading = false
             })
+            .addCase(getMoviesBySearch.pending, (state, action) => {
+                state.loading = true
+            })
+
 })
 
-const {reducer: movieReducer} = movieSlice
+const {reducer: movieReducer, actions:{setCurrentPage, setSearchPage}} = movieSlice
 
 const movieActions = {
     getAllMovies,
     getGenres,
     getMoviesByGenre,
-    getMoviesBySearch
+    getMoviesBySearch,
+    setCurrentPage,
+    setSearchPage
 }
 
 export {

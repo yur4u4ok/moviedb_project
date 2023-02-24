@@ -1,7 +1,8 @@
 import {Outlet} from "react-router-dom";
 
-import {Genres, Header} from "../../components";
+import {Header} from "../../components";
 import css from './MainLayout.module.css'
+import {Genres} from "../Genres/Genres";
 
 const MainLayout = () => {
     return (

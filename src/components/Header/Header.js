@@ -11,8 +11,7 @@ const Header = () => {
         if(request) {
             navigate(`/search/${request}`)
         }else{
-
-        navigate('/movies')
+            navigate('/movies')
         }
     }
 
@@ -25,8 +24,16 @@ const Header = () => {
             <div className={css.searchUserTheme}>
                 <input type="text" placeholder={'Enter your movie name'} onChange={e => setSearchWord(e.target.value)}/>
 
-                <div className={css.round}>A</div>
+                <div className={css.round}>
+                    <img src="https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg" alt={"Admin"}/>
+                </div>
+
+                <div className={css.hide}>
+                    Hello, Admin
+                </div>
+
                 <ThemeSwitch/>
+
             </div>
 
         </div>

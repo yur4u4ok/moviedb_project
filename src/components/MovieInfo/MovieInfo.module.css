@@ -48,3 +48,7 @@ h3{
     height: 70px;
     flex-wrap:wrap;
 }
+
+.divForBadges a{
+    text-decoration: none;
+}

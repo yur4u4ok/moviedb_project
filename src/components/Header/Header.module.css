@@ -10,24 +10,30 @@
 h2{
     font-size: 35px;
     font-family: "Bauhaus 93", serif;
+    border: 3px solid black;
+    border-radius: 50px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .searchUserTheme{
     display: flex;
 }
 
-.round{
+.round:hover + .hide{
+    display: block;
+}
+
+.round img{
+    width: 30px;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: snow;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-family: "Arial", serif;
+    border-radius: 10px;
+}
+
+.hide{
+    display: none;
+    margin-right: 20px;
 }
 
 input{
@@ -40,7 +46,6 @@ input{
     color: black;
 }
 
-
 html[data-theme='dark']{
     --background: #242424;
     color: white;
@@ -49,3 +54,5 @@ html[data-theme='dark']{
 html{
     background-color: var(--background);
 }
+
+

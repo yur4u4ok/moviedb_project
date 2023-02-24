@@ -1,9 +1,9 @@
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
+import {Rating} from "@mui/material";
 
 import css from './MovieInfo.module.css'
-import {Rating} from "@mui/material";
 import {movieActions} from "../../redux";
 
 
@@ -20,15 +20,18 @@ const MovieInfo = () => {
         }
     } = useLocation()
 
+
     const {genres} = useSelector(state => state.movieReducer)
 
     const dispatch = useDispatch()
 
     const image = `https://image.tmdb.org/t/p/w300${poster_path}`
 
+
     useEffect(() => {
         dispatch(movieActions.getGenres())
     }, [dispatch])
+
 
     const findGenre = (id) => {
         const genre = genres.find(item => item.id === id)
@@ -44,12 +47,14 @@ const MovieInfo = () => {
             </div>
 
             <div className={css.ImageAndInfo}>
+
                 <div>
                     <img className={css.image} src={image} alt={title}/>
                     <div className={css.divForBadges}>
-                        {genre_ids?.map(item => <div key={item} className={css.badge}>{findGenre(item) + ' '}</div>)}
+                        {genre_ids?.map(item => <Link to={`/movies/${item}`}><div key={item} className={css.badge}>{findGenre(item) + ' '}</div></Link>)}
                     </div>
                 </div>
+
                 <div>
                     <Rating name="half-rating-read"
                             defaultValue={vote_average}
