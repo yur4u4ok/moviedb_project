@@ -4,7 +4,8 @@ const urls = {
     getAllMovies: '/discover/movie',
     getById: '/movie',
     getGenres: '/genre/movie/list',
-    getSearch: '/search/movie'
+    getSearch: '/search/movie',
+    getPopular: '/movie/popular'
 }
 
 export {

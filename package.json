@@ -17,7 +17,9 @@
     "@mui/material": "^5.11.10",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "react-theme-switch-css": "^1.0.2"
+    "react-theme-switch-css": "^1.0.2",
+    "react-slideshow-image": "^4.2.1"
+
   },
   "scripts": {
     "start": "react-scripts start",

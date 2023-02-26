@@ -8,6 +8,7 @@ const initialState = {
     moviesByGenre: [],
     searchMovies: [],
     selectedGenre: [],
+    popularMovies: [],
     currentPage: 1,
     currentSearchPage: 1,
     total_pages: null,
@@ -63,7 +64,6 @@ const getMoviesByOneGenre = createAsyncThunk(
     }
 );
 
-
 const getMoviesBySearch = createAsyncThunk(
     'movieSlice/getMoviesBySearch',
     async ({value, currentSearchPage}, thunkAPI) => {
@@ -74,7 +74,21 @@ const getMoviesBySearch = createAsyncThunk(
             return thunkAPI.rejectWithValue(e.response.data)
         }
     }
+);
+
+const getPopularMovies = createAsyncThunk(
+    'movieSlice/getPopularMovies',
+    async(_, thunkAPI) => {
+        try{
+            const {data} = await movieService.getPopularMovies()
+            return data
+        }
+        catch(e){
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
 )
+
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -155,6 +169,11 @@ const movieSlice = createSlice({
                 state.loading = true
             })
 
+            .addCase(getPopularMovies.fulfilled, (state, action) => {
+                const {results} = action.payload
+                state.popularMovies = results
+            })
+
 })
 
 const {
@@ -168,6 +187,7 @@ const movieActions = {
     getMoviesByGenre,
     getMoviesBySearch,
     getMoviesByOneGenre,
+    getPopularMovies,
     setCurrentPage,
     setSearchPage,
     setGenre,

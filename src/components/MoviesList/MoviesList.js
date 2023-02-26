@@ -6,6 +6,7 @@ import {movieActions} from "../../redux";
 import {Movie} from "../Movie/Movie";
 import css from './Movies.module.css'
 import {useParams} from "react-router-dom";
+import {PopularMovies} from "../PopularMovies/PopularMovies";
 
 const MoviesList = () => {
     const {movies, moviesByGenre, currentPage, total_pages, loading, selectedGenre, searchMovies} = useSelector(state => state.movieReducer)
@@ -50,6 +51,10 @@ const MoviesList = () => {
                             shape={'rounded'}
                             color={'primary'}
                         />
+                    </div>
+                    <div>
+
+                    <PopularMovies/>
                     </div>
 
                     <div className={css.movies}>
