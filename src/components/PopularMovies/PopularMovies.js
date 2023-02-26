@@ -29,7 +29,7 @@ const PopularMovies = () => {
                 {popularMovies.map(item =>
                     <Link to={`/movieInfo/${item.id}`} state={{...item}} className={css.link} key={item.id}>
                         <div className="each-fade" key={item.id}>
-                            <img src={`${baseImageUrl}/${item.poster_path}`}/>
+                            <img src={`${baseImageUrl}/${item.poster_path}`} alt={item.title}/>
                             <p>{item.title}</p>
                         </div>
                     </Link>
