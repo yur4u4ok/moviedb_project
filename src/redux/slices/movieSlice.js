@@ -9,7 +9,7 @@ const initialState = {
     searchMovies: [],
     selectedGenre: [],
     currentPage: 1,
-    currentSearchPage:1,
+    currentSearchPage: 1,
     total_pages: null,
     loading: false,
     errors: null
@@ -18,11 +18,10 @@ const initialState = {
 const getAllMovies = createAsyncThunk(
     'movieSlice/getAllMovies',
     async ({currentPage}, thunkAPI) => {
-        try{
+        try {
             const {data} = await movieService.getAllMovies(currentPage)
             return data
-        }
-        catch(e){
+        } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
         }
     }
@@ -30,12 +29,11 @@ const getAllMovies = createAsyncThunk(
 
 const getGenres = createAsyncThunk(
     'movieSlice/getGenres',
-    async(_, thunkAPI) => {
-        try{
+    async (_, thunkAPI) => {
+        try {
             const {data} = await movieService.getGenres()
             return data
-        }
-        catch (e){
+        } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
         }
     }
@@ -43,25 +41,36 @@ const getGenres = createAsyncThunk(
 
 const getMoviesByGenre = createAsyncThunk(
     'movieSlice/getMoviesByGenre',
-    async({selectedGenre, currentPage}, thunkAPI) => {
+    async ({selectedGenre, currentPage}, thunkAPI) => {
         try {
             const {data} = await movieService.getMoviesByGenre(selectedGenre, currentPage)
             return data
-        }
-        catch(e){
+        } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
         }
     }
-)
+);
+
+const getMoviesByOneGenre = createAsyncThunk(
+    'movieSlice/getMoviesByOneGenre',
+    async ({genreId, currentPage}, thunkAPI) => {
+        try {
+            const {data} = await movieService.getMoviesByGenre(genreId, currentPage)
+            return data
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 
 const getMoviesBySearch = createAsyncThunk(
     'movieSlice/getMoviesBySearch',
-    async({value, currentSearchPage}, thunkAPI) => {
+    async ({value, currentSearchPage}, thunkAPI) => {
         try {
             const {data} = await movieService.getSearchMovie(value, currentSearchPage)
             return data
-        }
-        catch(e){
+        } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
         }
     }
@@ -71,11 +80,11 @@ const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
     reducers: {
-        setCurrentPage: (state,action) => {
+        setCurrentPage: (state, action) => {
             state.currentPage = action.payload
         },
 
-        setSearchPage: (state,action) => {
+        setSearchPage: (state, action) => {
             state.currentSearchPage = action.payload
         },
         setGenre: (state, action) => {
@@ -124,6 +133,17 @@ const movieSlice = createSlice({
                 state.loading = true
             })
 
+            .addCase(getMoviesByOneGenre.fulfilled, (state, action) => {
+                const {results, page, total_pages} = action.payload
+                state.moviesByGenre = results
+                state.thisPage = page
+                state.total_pages = total_pages
+                state.loading = false
+            })
+            .addCase(getMoviesByOneGenre.pending, (state) => {
+                state.loading = true
+            })
+
             .addCase(getMoviesBySearch.fulfilled, (state, action) => {
                 const {results, page, total_pages} = action.payload
                 state.searchMovies = results
@@ -137,13 +157,17 @@ const movieSlice = createSlice({
 
 })
 
-const {reducer: movieReducer, actions:{setCurrentPage, setSearchPage, setGenre, discardGenres, toMainPage}} = movieSlice
+const {
+    reducer: movieReducer,
+    actions: {setCurrentPage, setSearchPage, setGenre, discardGenres, toMainPage}
+} = movieSlice
 
 const movieActions = {
     getAllMovies,
     getGenres,
     getMoviesByGenre,
     getMoviesBySearch,
+    getMoviesByOneGenre,
     setCurrentPage,
     setSearchPage,
     setGenre,
