@@ -1,6 +1,4 @@
-.MovieInfo{
 
-}
 
 .title{
     display: flex;
@@ -11,7 +9,7 @@
     display: flex;
     padding-left: 22%;
     width: 61%;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: inherit;
 }
 

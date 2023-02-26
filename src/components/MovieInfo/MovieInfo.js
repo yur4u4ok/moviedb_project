@@ -16,6 +16,7 @@ const MovieInfo = () => {
             overview,
             title,
             poster_path,
+            backdrop_path,
             genre_ids
         }
     } = useLocation()
@@ -26,6 +27,8 @@ const MovieInfo = () => {
     const dispatch = useDispatch()
 
     const image = `https://image.tmdb.org/t/p/w300${poster_path}`
+
+    const anotherImage = `https://image.tmdb.org/t/p/w300${backdrop_path}`
 
 
     useEffect(() => {
@@ -40,7 +43,7 @@ const MovieInfo = () => {
 
 
     return (
-        <div className={css.MovieInfo}>
+        <div>
 
             <div className={css.title}>
                 <h4 className={css.h4Title}>{title}</h4>
@@ -51,11 +54,17 @@ const MovieInfo = () => {
                 <div>
                     <img className={css.image} src={image} alt={title}/>
                     <div className={css.divForBadges}>
-                        {genre_ids?.map(item => <Link key={item} to={`/movies/${item}`}><div key={item} className={css.badge}>{findGenre(item) + ' '}</div></Link>)}
+                        {genre_ids?.map(item => <Link key={item} to={`/movies/${item}`}>
+                            <div key={item} className={css.badge}>{findGenre(item) + ' '}</div>
+                        </Link>)}
                     </div>
                 </div>
 
                 <div>
+                    <div>
+                        <img src={anotherImage} alt={title}/>
+                    </div>
+
                     <Rating name="half-rating-read"
                             defaultValue={vote_average}
                             max={10}
@@ -72,11 +81,9 @@ const MovieInfo = () => {
                     <h4>Original Language</h4>
                     <p>{original_language.toUpperCase()}</p>
 
-                    <h4>Genres</h4>
-                    {genre_ids?.map(item => <span key={item}>{findGenre(item) + ' ; '}</span>)}
                 </div>
-
             </div>
+
         </div>
     )
 }
