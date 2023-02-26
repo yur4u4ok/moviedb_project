@@ -7,6 +7,7 @@ const initialState = {
     genres: [],
     moviesByGenre: [],
     searchMovies: [],
+    selectedGenre: [],
     currentPage: 1,
     currentSearchPage:1,
     total_pages: null,
@@ -42,9 +43,9 @@ const getGenres = createAsyncThunk(
 
 const getMoviesByGenre = createAsyncThunk(
     'movieSlice/getMoviesByGenre',
-    async({genreId, currentPage}, thunkAPI) => {
+    async({selectedGenre, currentPage}, thunkAPI) => {
         try {
-            const {data} = await movieService.getMoviesByGenre(genreId, currentPage)
+            const {data} = await movieService.getMoviesByGenre(selectedGenre, currentPage)
             return data
         }
         catch(e){
@@ -76,6 +77,17 @@ const movieSlice = createSlice({
 
         setSearchPage: (state,action) => {
             state.currentSearchPage = action.payload
+        },
+        setGenre: (state, action) => {
+            state.selectedGenre.push(action.payload)
+
+        },
+        discardGenres: (state, action) => {
+            let indexGenreToDelete = state.selectedGenre.findIndex(elem => elem === action.payload)
+            state.selectedGenre.splice(indexGenreToDelete, 1);
+        },
+        toMainPage: (state) => {
+            state.selectedGenre.length = 0
         }
     },
     extraReducers: builder =>
@@ -87,7 +99,7 @@ const movieSlice = createSlice({
                 state.total_pages = total_pages
                 state.loading = false
             })
-            .addCase(getAllMovies.pending, (state, action) => {
+            .addCase(getAllMovies.pending, (state) => {
                 state.loading = true
             })
 
@@ -97,7 +109,7 @@ const movieSlice = createSlice({
                 state.total_pages = total_pages
                 state.loading = false
             })
-            .addCase(getGenres.pending, (state, action) => {
+            .addCase(getGenres.pending, (state) => {
                 state.loading = true
             })
 
@@ -108,7 +120,7 @@ const movieSlice = createSlice({
                 state.total_pages = total_pages
                 state.loading = false
             })
-            .addCase(getMoviesByGenre.pending, (state, action) => {
+            .addCase(getMoviesByGenre.pending, (state) => {
                 state.loading = true
             })
 
@@ -119,13 +131,13 @@ const movieSlice = createSlice({
                 state.total_pages = total_pages
                 state.loading = false
             })
-            .addCase(getMoviesBySearch.pending, (state, action) => {
+            .addCase(getMoviesBySearch.pending, (state) => {
                 state.loading = true
             })
 
 })
 
-const {reducer: movieReducer, actions:{setCurrentPage, setSearchPage}} = movieSlice
+const {reducer: movieReducer, actions:{setCurrentPage, setSearchPage, setGenre, discardGenres, toMainPage}} = movieSlice
 
 const movieActions = {
     getAllMovies,
@@ -133,7 +145,10 @@ const movieActions = {
     getMoviesByGenre,
     getMoviesBySearch,
     setCurrentPage,
-    setSearchPage
+    setSearchPage,
+    setGenre,
+    discardGenres,
+    toMainPage
 }
 
 export {

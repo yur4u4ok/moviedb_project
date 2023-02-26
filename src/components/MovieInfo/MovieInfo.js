@@ -51,7 +51,7 @@ const MovieInfo = () => {
                 <div>
                     <img className={css.image} src={image} alt={title}/>
                     <div className={css.divForBadges}>
-                        {genre_ids?.map(item => <Link to={`/movies/${item}`}><div key={item} className={css.badge}>{findGenre(item) + ' '}</div></Link>)}
+                        {genre_ids?.map(item => <Link key={item} to={`/movies/${item}`}><div key={item} className={css.badge}>{findGenre(item) + ' '}</div></Link>)}
                     </div>
                 </div>
 

@@ -1,10 +1,11 @@
 .Genres{
     background-color: cornflowerblue;
     height: 970px;
+    width: 150px;
     padding-left: 25px;
-    padding-right: 25px;
+    padding-right: 55px;
     font-family: "Century Gothic", serif;
-    font-size: 20px;
+    font-size: 22px;
     border-radius: 30px;
     border: 1px solid black;
     opacity: 0.8;
@@ -12,14 +13,14 @@
     margin-top: 10px;
 }
 
+.boxWithGenres{
+    display: flex;
+    padding-bottom: 14px;
+}
+
 .Genres a{
     text-decoration: none;
     color: darkblue;
-}
-
-.Genres a[class='active'] {
-    font-size: 22px;
-    color: red;
 }
 
 .toMainPage{

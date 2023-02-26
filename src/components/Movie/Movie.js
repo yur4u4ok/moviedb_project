@@ -10,7 +10,6 @@ const Movie = ({movie}) => {
 
     const {genres} = useSelector(state => state.movieReducer)
 
-
     const findGenre = (id) => {
         const genre = genres.find(item => item.id === id)
         return genre?.name
@@ -18,20 +17,23 @@ const Movie = ({movie}) => {
 
 
     return (
-        <Link to={`/movieInfo/${id}`} state={{...movie}} className={css.link}>
-            <div className={css.movie}>
 
-                <div>
+        <div className={css.movie}>
+            <Link to={`/movieInfo/${id}`} state={{...movie}} className={css.link}>
                     <img className={css.images} src={image} alt={title}/>
 
-                    <div className={css.divForBadge}>
-                        {genre_ids?.map(item => <Link to={`/movies/${item}`}><div key={item} className={css.badges}>{findGenre(item) + ' '}</div></Link>)}
-                    </div>
-                </div>
 
-                <h4>{title}</h4>
-            </div>
-        </Link>
+                    <div className={css.divForBadge}>
+                        {genre_ids?.map(item => <Link key={item} to={`/movies/${item}`}>
+                            <div key={item} className={css.badges}>{findGenre(item) + ' '}</div>
+                        </Link>)}
+                    </div>
+
+                <div className={css.titleName}>
+                    <h4>{title}</h4>
+                </div>
+            </Link>
+        </div>
     )
 }
 

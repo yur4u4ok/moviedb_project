@@ -2,8 +2,7 @@
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
-    width: 70%;
-    padding-left: 10%;
+    padding-right: 5%;
 }
 .mainPageForMovies{
     display: flex;

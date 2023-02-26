@@ -1,6 +1,18 @@
 .movie{
     margin: 10px;
-    width: 270px;
+    width: 318px;
+    border-radius: 15px;
+    border: 2px solid aqua;
+    background-color: black;
+    opacity: 0.9;
+}
+
+.images{
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    height: 450px;
+    width: 300px;
 }
 
 .images:hover {
@@ -10,9 +22,16 @@
 
 .link{
     text-decoration: none;
-    /*color: darkcyan;*/
+    color: white;
     font-family: "Century Gothic", serif;
 }
+
+.titleName{
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+}
+
 
 .divForBadge{
     display: flex;
@@ -21,6 +40,8 @@
     width: 300px;
     height: 10px;
     flex-wrap:wrap;
+    margin-left: 15px;
+    margin-top: 2px;
 }
 
 .divForBadge a{

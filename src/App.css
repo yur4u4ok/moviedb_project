@@ -3,7 +3,6 @@ html{
     --background: #ffffff;
     background-image: url("https://static3.bigstockphoto.com/1/4/1/large1500/14135582.jpg");
     background-attachment: fixed;
-    /*color: darkslategray;*/
 }
 
 html[data-theme='dark']{
